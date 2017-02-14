@@ -33,8 +33,8 @@
         ],
         "cs-check": "bin/php-cs-fixer --version && bin/php-cs-fixer fix -v --diff --dry-run src",
         "cs-fix": "bin/php-cs-fixer fix -v src",
-        "test-php-7.0": "tools/docker/bin/docker-phpunit-7.0",
-        "test-php-7.1": "tools/docker/bin/docker-phpunit-7.1"
+        "test-php-7.0": "docker/bin/docker-phpunit-7.0",
+        "test-php-7.1": "docker/bin/docker-phpunit-7.1"
     },
     "autoload": {
         "psr-4": {
@@ -50,11 +50,11 @@
         }
     },
     "bin": [
-        "tools/docker/bin/docker-php-7.0",
-        "tools/docker/bin/docker-php-7.1",
-        "tools/docker/bin/docker-phpunit-7.0",
-        "tools/docker/bin/docker-phpunit-7.1",
-        "tools/docker/bin/docker-shell"
+        "docker/bin/docker-php-7.0",
+        "docker/bin/docker-php-7.1",
+        "docker/bin/docker-phpunit-7.0",
+        "docker/bin/docker-phpunit-7.1",
+        "docker/bin/docker-shell"
     ],
     "extra": {
         "branch-alias": {

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-[ -z "$DC_DOCKER_COMPOSE_FILE" ] && DC_DOCKER_COMPOSE_FILE="../etc/docker-compose.yml"
+[ -z "$DC_DOCKER_COMPOSE_FILE" ] && DC_DOCKER_COMPOSE_FILE="../docker/docker-compose.yml"
 CONTAINER=$1
 shift
 

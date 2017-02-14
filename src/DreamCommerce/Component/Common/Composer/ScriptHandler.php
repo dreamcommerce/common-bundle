@@ -9,53 +9,13 @@ class ScriptHandler
     /**
      * @param Event $event
      */
-    public static function copyPhpCodeSnifferFiles(Event $event)
-    {
-        $bundleDir = static::getBundleDirectory($event);
-        $sourceDir = $bundleDir . '/.php_cs';
-        $destinationDir = './';
-
-        if(!file_exists($destinationDir)) {
-            @copy($sourceDir, $destinationDir);
-        }
-    }
-
-    /**
-     * @param Event $event
-     */
-    public static function copyDockerFiles(Event $event)
-    {
-        $bundleDir = static::getBundleDirectory($event);
-        $buildSourceDir = $bundleDir . '/tools/docker/build';
-        $buildDestinationDir = './build';
-
-        if(!file_exists($buildDestinationDir)) {
-            static::copyDirectory($buildSourceDir, $buildDestinationDir);
-        }
-
-        $configSourceFile = $bundleDir . '/tools/docker/etc/docker-compose.yml.dist';
-        $configDestinationFile = './etc/docker-compose.yml';
-
-        if(!file_exists($configDestinationFile)) {
-            @copy($configSourceFile, $configDestinationFile);
-        }
-
-        $configDestinationFile .= '.dist';
-
-        if(!file_exists($configDestinationFile)) {
-            @copy($configSourceFile, $configDestinationFile);
-        }
-    }
-
-    /**
-     * @param Event $event
-     * @return string
-     */
-    private static function getBundleDirectory(Event $event): string
+    public static function copyTemplateDir(Event $event)
     {
         $config = $event->getComposer()->getConfig();
+        $templateSourceDir = $config->get('vendor-dir').'/dreamcommerce/common-bundle/template';
+        $templateDestinationDir = './';
 
-        return $config->get('vendor-dir') . '/dreamcommerce/common-bundle';
+        static::copyDirectory($templateSourceDir, $templateDestinationDir);
     }
 
     /**
@@ -70,9 +30,15 @@ class ScriptHandler
                 \RecursiveIteratorIterator::SELF_FIRST) as $item
         ) {
             if ($item->isDir()) {
-                @mkdir($destination . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
+                $dirPath = $destination.DIRECTORY_SEPARATOR.$iterator->getSubPathName();
+                if (!file_exists($dirPath)) {
+                    @mkdir($dirPath);
+                }
             } else {
-                @copy($item, $destination . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
+                $filePath = $destination.DIRECTORY_SEPARATOR.$iterator->getSubPathName();
+                if (!file_exists($filePath)) {
+                    @copy($item, $filePath);
+                }
             }
         }
     }
