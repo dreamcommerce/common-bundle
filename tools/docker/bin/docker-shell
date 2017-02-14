@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+[ -z "$DC_DOCKER_COMPOSE_FILE" ] && DC_DOCKER_COMPOSE_FILE="../docker-compose.yml"
+CONTAINER=$1
+shift
+
+PARAMS=$(printf '%s ' ${@})
+
+cd `dirname $0` && docker-compose --file $DC_DOCKER_COMPOSE_FILE run --rm $CONTAINER /docker/entry.sh $UID $PARAMS

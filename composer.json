@@ -1,0 +1,65 @@
+{
+    "name": "dreamcommerce/common-bundle",
+    "license": "MIT",
+    "description": "DreamCommerce common bundle",
+    "require": {
+        "php": "~7.0",
+        "psr/http-message": "^1.0"
+    },
+    "require-dev": {
+        "doctrine/doctrine-bundle": "~1.4",
+        "doctrine/orm": "^2.5",
+        "guzzlehttp/guzzle": "^6.2",
+        "phpunit/phpunit": "^5.5",
+        "sylius/resource-bundle": "v1.0.0-beta.1@dev",
+        "friendsofphp/php-cs-fixer": "^1.11",
+        "polishsymfonycommunity/symfony-mocker-container": "^1.0",
+        "symfony/browser-kit": "^3.2",
+        "matthiasnoback/symfony-dependency-injection-test": "^1.0"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "bin-dir": "bin"
+    },
+    "scripts": {
+        "check": [
+            "@cs-check",
+            "@test"
+        ],
+        "test": [
+            "@test-php-7.0",
+            "@test-php-7.1"
+        ],
+        "cs-check": "bin/php-cs-fixer --version && bin/php-cs-fixer fix -v --diff --dry-run src",
+        "cs-fix": "bin/php-cs-fixer fix -v src",
+        "test-php-7.0": "tools/docker/bin/docker-phpunit-7.0",
+        "test-php-7.1": "tools/docker/bin/docker-phpunit-7.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "DreamCommerce\\Component\\Common\\": "src/DreamCommerce/Component/Common",
+            "DreamCommerce\\Bundle\\CommonBundle\\": "src/DreamCommerce/Bundle/CommonBundle"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DreamCommerce\\Tests\\Common\\": "test/src/DreamCommerce/Tests/Common",
+            "DreamCommerce\\Tests\\CommonBundle\\": "test/src/DreamCommerce/Tests/CommonBundle",
+            "AppBundle\\": "test/src/AppBundle/"
+        }
+    },
+    "bin": [
+        "tools/bin/docker-php-7.0",
+        "tools/bin/docker-php-7.1",
+        "tools/bin/docker-phpunit-7.0",
+        "tools/bin/docker-phpunit-7.1",
+        "tools/bin/docker-shell"
+    ],
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev",
+            "dev-develop": "1.1-dev"
+        }
+    }
+}

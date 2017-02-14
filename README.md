@@ -1,1 +1,1 @@
-# common-bundle
+# DreamCommerce Common Bundle
