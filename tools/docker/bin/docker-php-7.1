@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-[ -z "$DC_DOCKER_COMPOSE_FILE" ] && DC_DOCKER_COMPOSE_FILE="../docker-compose.yml"
+[ -z "$DC_DOCKER_COMPOSE_FILE" ] && DC_DOCKER_COMPOSE_FILE="../etc/docker-compose.yml"
 
 cd `dirname $0` && docker-compose --file $DC_DOCKER_COMPOSE_FILE run --rm php-7.1 /docker/entry.sh $UID php "$@"

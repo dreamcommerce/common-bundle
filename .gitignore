@@ -1,7 +1,7 @@
 /vendor
 /bin
 /.php_cs.cache
-/tools/docker/docker-compose.yml
+/tools/docker/etc/docker-compose.yml
 /test/app/cache
 /test/app/logs
 /test/app/config/parameters.yml
