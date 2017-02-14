@@ -50,11 +50,11 @@
         }
     },
     "bin": [
-        "tools/bin/docker-php-7.0",
-        "tools/bin/docker-php-7.1",
-        "tools/bin/docker-phpunit-7.0",
-        "tools/bin/docker-phpunit-7.1",
-        "tools/bin/docker-shell"
+        "tools/docker/bin/docker-php-7.0",
+        "tools/docker/bin/docker-php-7.1",
+        "tools/docker/bin/docker-phpunit-7.0",
+        "tools/docker/bin/docker-phpunit-7.1",
+        "tools/docker/bin/docker-shell"
     ],
     "extra": {
         "branch-alias": {
