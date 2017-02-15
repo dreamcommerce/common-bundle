@@ -4,7 +4,6 @@ namespace DreamCommerce\Component\Common\Model;
 
 use ArrayAccess;
 use DateTime;
-use Sylius\Component\Resource\Model\ResourceInterface;
 use Webmozart\Assert\Assert;
 
 trait ArrayableTrait
@@ -29,12 +28,17 @@ trait ArrayableTrait
             } elseif (is_object($v)) {
                 if ($v instanceof DateTime) {
                     $arr[$k] = $v->format(\DateTime::ISO8601);
-                } elseif ($v instanceof ResourceInterface) {
-                    $arr[$k] = get_class($v).'#'.$v->getId();
                 } elseif ($v instanceof ArrayAccess) {
                     $arr[$k] = (array) $v;
+                } elseif(class_exists('Sylius\Component\Resource\Model\ResourceInterface')) {
+                    if($v instanceof Sylius\Component\Resource\Model\ResourceInterface) {
+                        $arr[$k] = get_class($v).'#'.$v->getId();
+                    }
                 }
-                unset($arr[$k]);
+
+                if(is_object($arr[$k])) {
+                    $arr[$k] = get_class($arr[$k]);
+                }
             }
         }
     }

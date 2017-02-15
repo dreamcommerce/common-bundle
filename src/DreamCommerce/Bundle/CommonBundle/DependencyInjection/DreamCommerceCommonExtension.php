@@ -2,12 +2,12 @@
 
 namespace DreamCommerce\Bundle\CommonBundle\DependencyInjection;
 
-use Sylius\Bundle\ResourceBundle\DependencyInjection\Extension\AbstractResourceExtension;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
-final class DreamCommerceCommonExtension extends AbstractResourceExtension
+final class DreamCommerceCommonExtension extends Extension
 {
     const ALIAS = 'dream_commerce_common';
 
