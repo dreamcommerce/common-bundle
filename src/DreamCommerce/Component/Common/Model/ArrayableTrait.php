@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * (c) 2017 DreamCommerce
+ *
+ * @package DreamCommerce\Component\Common
+ * @author Michał Korus <michal.korus@dreamcommerce.com>
+ * @link https://www.dreamcommerce.com
+ */
+
 namespace DreamCommerce\Component\Common\Model;
 
 use ArrayAccess;
@@ -30,13 +38,13 @@ trait ArrayableTrait
                     $arr[$k] = $v->format(\DateTime::ISO8601);
                 } elseif ($v instanceof ArrayAccess) {
                     $arr[$k] = (array) $v;
-                } elseif(class_exists('Sylius\Component\Resource\Model\ResourceInterface')) {
-                    if($v instanceof Sylius\Component\Resource\Model\ResourceInterface) {
+                } elseif (class_exists('Sylius\Component\Resource\Model\ResourceInterface')) {
+                    if ($v instanceof Sylius\Component\Resource\Model\ResourceInterface) {
                         $arr[$k] = get_class($v).'#'.$v->getId();
                     }
                 }
 
-                if(is_object($arr[$k])) {
+                if (is_object($arr[$k])) {
                     $arr[$k] = get_class($arr[$k]);
                 }
             }

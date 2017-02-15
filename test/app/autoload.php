@@ -1,11 +1,19 @@
 <?php
 
+/*
+ * (c) 2017 DreamCommerce
+ *
+ * @package DreamCommerce\Component\Common
+ * @author Michał Korus <michal.korus@dreamcommerce.com>
+ * @link https://www.dreamcommerce.com
+ */
+
 use Doctrine\Common\Annotations\AnnotationRegistry;
 
 $loader = require __DIR__.'/../../vendor/autoload.php';
 
 require __DIR__.'/AppKernel.php';
 
-AnnotationRegistry::registerLoader([$loader, 'loadClass']);
+AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
 return $loader;
