@@ -8,10 +8,10 @@
  * @link https://www.dreamcommerce.com
  */
 
-namespace AppBundle;
+namespace DreamCommerce\Fixtures\CommonBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class AppBundle extends Bundle
+class DreamCommerceFixturesCommonBundle extends Bundle
 {
 }

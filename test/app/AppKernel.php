@@ -24,7 +24,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new DreamCommerce\Bundle\CommonBundle\DreamCommerceCommonBundle(),
-            new AppBundle\AppBundle(),
+            new DreamCommerce\Fixtures\CommonBundle\DreamCommerceFixturesCommonBundle()
         );
     }
 
