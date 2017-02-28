@@ -5,7 +5,8 @@
     "description": "DreamCommerce common bundle",
     "require": {
         "php": "~7.0",
-        "psr/http-message": "^1.0"
+        "psr/http-message": "^1.0",
+        "webmozart/assert": "^1.2"
     },
     "require-dev": {
         "doctrine/doctrine-bundle": "~1.4",
