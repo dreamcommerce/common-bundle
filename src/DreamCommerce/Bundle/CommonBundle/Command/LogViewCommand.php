@@ -5,7 +5,6 @@
  *
  * @package DreamCommerce\Component\Common
  * @author Michał Korus <michal.korus@dreamcommerce.com>
- * @author Przemysław Pawliczuk
  * @link https://www.dreamcommerce.com
  */
 
@@ -59,7 +58,7 @@ class LogViewCommand extends BaseCommand
         $filename = $helper->ask($input, $output, $question);
         $filePath = sprintf('%s/%s', $this->getContainer()->get('kernel')->getLogDir(), $filename);
 
-        if(file_exists($filePath)) {
+        if (file_exists($filePath)) {
             $this->showLog($filePath);
         } else {
             $this->printMessageBox($output, 'File "' . $filePath . '" does not exist');
