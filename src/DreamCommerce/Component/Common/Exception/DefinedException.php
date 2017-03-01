@@ -12,9 +12,16 @@ namespace DreamCommerce\Component\Common\Exception;
 
 use Exception;
 
-class DefinedException extends Exception
+class DefinedException extends Exception implements ContextInterface
 {
+    use ContextTrait;
+
     const CODE_VARIABLE_DEFINED = 10;
+
+    /**
+     * @var string
+     */
+    protected $variableName;
 
     /**
      * @param string|null $variableName
@@ -22,12 +29,17 @@ class DefinedException extends Exception
      */
     public static function forVariable(string $variableName = null): DefinedException
     {
-        if (empty($message)) {
-            $message = 'Variable has been defined';
-        } else {
-            $message = 'Variable "'.$variableName.'" has been defined';
-        }
+        $exception = new static('The variable has been defined', static::CODE_VARIABLE_DEFINED);
+        $exception->variableName = $variableName;
 
-        return new static($message, static::CODE_VARIABLE_DEFINED);
+        return $exception;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVariableName(): string
+    {
+        return $this->variableName;
     }
 }

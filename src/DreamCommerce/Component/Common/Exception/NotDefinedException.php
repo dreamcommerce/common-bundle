@@ -12,9 +12,16 @@ namespace DreamCommerce\Component\Common\Exception;
 
 use Exception;
 
-class NotDefinedException extends Exception
+class NotDefinedException extends Exception implements ContextInterface
 {
+    use ContextTrait;
+
     const CODE_VARIABLE_NOT_DEFINED = 10;
+
+    /**
+     * @var string
+     */
+    protected $variableName;
 
     /**
      * @param string|null $variableName
@@ -22,12 +29,17 @@ class NotDefinedException extends Exception
      */
     public static function forVariable(string $variableName = null): NotDefinedException
     {
-        if (empty($message)) {
-            $message = 'Variable has been not defined';
-        } else {
-            $message = 'Variable "'.$variableName.'" has been not defined';
-        }
+        $exception = new static('The variable has been not defined', static::CODE_VARIABLE_NOT_DEFINED);
+        $exception->variableName = $variableName;
 
-        return new static($message, static::CODE_VARIABLE_NOT_DEFINED);
+        return $exception;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVariableName(): string
+    {
+        return $this->variableName;
     }
 }
