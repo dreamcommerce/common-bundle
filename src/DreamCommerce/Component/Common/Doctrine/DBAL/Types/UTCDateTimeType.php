@@ -19,7 +19,7 @@ use Webmozart\Assert\Assert;
 
 class UTCDateTimeType extends DateTimeType
 {
-    const TYPE_NAME = 'utcDateTimeType';
+    const TYPE_NAME = 'dc_utc_datetime';
 
     private static $utc = null;
 
