@@ -28,10 +28,10 @@ abstract class MapEnumType extends EnumType
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
         $definition = null;
+        $platformName = $platform->getName();
 
         switch ($this->enumType) {
             case static::TYPE_UINT8:
-                $platformName = $platform->getName();
                 Assert::oneOf($platformName, array('mysql'));
                 $definition = 'TINYINT(1)';
 
@@ -53,7 +53,11 @@ abstract class MapEnumType extends EnumType
             case static::TYPE_UINT8:
             case static::TYPE_UINT16:
             case static::TYPE_UINT32:
-                $definition .= ' unsigned';
+                if($platformName == 'postgresql') {
+                    $definition .= ' CHECK(' . $fieldDeclaration['name'] . ' > 0)';
+                } else {
+                    $definition .= ' unsigned';
+                }
                 break;
         }
 
