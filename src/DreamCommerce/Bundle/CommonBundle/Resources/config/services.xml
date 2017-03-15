@@ -6,7 +6,7 @@
     <parameters>
         <parameter key="dream_commerce.guzzle_client.class">GuzzleHttp\Client</parameter>
         <parameter key="dream_commerce.http_client.class">DreamCommerce\Component\Common\Http\GuzzleClient</parameter>
-        <parameter key="dream_commerce.datetime_factory.class">DreamCommerce\Component\Common\DateTimeFactory</parameter>
+        <parameter key="dream_commerce.datetime_factory.class">DreamCommerce\Component\Common\Factory\DateTimeFactory</parameter>
     </parameters>
 
     <services>
