@@ -6,9 +6,11 @@
     <parameters>
         <parameter key="dream_commerce.guzzle_client.class">GuzzleHttp\Client</parameter>
         <parameter key="dream_commerce.http_client.class">DreamCommerce\Component\Common\Http\GuzzleClient</parameter>
+        <parameter key="dream_commerce.datetime_factory.class">DreamCommerce\Component\Common\DateTimeFactory</parameter>
     </parameters>
 
     <services>
+        <service id="dream_commerce.datetime_factory" class="%dream_commerce.datetime_factory.class%" />
         <service id="dream_commerce.guzzle_client" class="%dream_commerce.guzzle_client.class%" shared="false" />
         <service id="dream_commerce.http_client" class="%dream_commerce.http_client.class%" shared="false">
             <argument type="service" id="dream_commerce.guzzle_client" />
