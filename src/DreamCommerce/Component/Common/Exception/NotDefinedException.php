@@ -17,11 +17,17 @@ class NotDefinedException extends Exception implements ContextInterface
     use ContextTrait;
 
     const CODE_VARIABLE_NOT_DEFINED = 10;
+    const CODE_PARAMETER_NOT_DEFINED = 11;
 
     /**
      * @var string
      */
     protected $variableName;
+
+    /**
+     * @var string
+     */
+    protected $parameterName;
 
     /**
      * @param string|null $variableName
@@ -36,10 +42,30 @@ class NotDefinedException extends Exception implements ContextInterface
     }
 
     /**
-     * @return string
+     * @param string|null $parameterName
+     * @return NotDefinedException
      */
-    public function getVariableName(): string
+    public static function forParameter(string $parameterName = null): NotDefinedException
+    {
+        $exception = new static('The parameter has been not defined', static::CODE_PARAMETER_NOT_DEFINED);
+        $exception->parameterName = $parameterName;
+
+        return $exception;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getVariableName()
     {
         return $this->variableName;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getParameterName()
+    {
+        return $this->parameterName;
     }
 }

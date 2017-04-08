@@ -17,11 +17,17 @@ class DefinedException extends Exception implements ContextInterface
     use ContextTrait;
 
     const CODE_VARIABLE_DEFINED = 10;
+    const CODE_PARAMETER_DEFINED = 11;
 
     /**
      * @var string
      */
     protected $variableName;
+
+    /**
+     * @var string
+     */
+    protected $parameterName;
 
     /**
      * @param string|null $variableName
@@ -36,10 +42,30 @@ class DefinedException extends Exception implements ContextInterface
     }
 
     /**
-     * @return string
+     * @param string|null $parameterName
+     * @return DefinedException
      */
-    public function getVariableName(): string
+    public static function forParameter(string $parameterName = null): DefinedException
+    {
+        $exception = new static('The parameter has been defined', static::CODE_PARAMETER_DEFINED);
+        $exception->parameterName = $parameterName;
+
+        return $exception;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getVariableName()
     {
         return $this->variableName;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getParameterName()
+    {
+        return $this->parameterName;
     }
 }
