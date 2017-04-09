@@ -11,6 +11,7 @@
 namespace DreamCommerce\Component\Common\Exception;
 
 use Exception;
+use Throwable;
 
 class NotDefinedException extends Exception implements ContextInterface
 {
@@ -31,11 +32,12 @@ class NotDefinedException extends Exception implements ContextInterface
 
     /**
      * @param string|null $variableName
+     * @param Throwable $previousException
      * @return NotDefinedException
      */
-    public static function forVariable(string $variableName = null): NotDefinedException
+    public static function forVariable(string $variableName = null, Throwable $previousException = null): NotDefinedException
     {
-        $exception = new static('The variable has been not defined', static::CODE_VARIABLE_NOT_DEFINED);
+        $exception = new static('The variable has been not defined', static::CODE_VARIABLE_NOT_DEFINED, $previousException);
         $exception->variableName = $variableName;
 
         return $exception;
@@ -43,11 +45,12 @@ class NotDefinedException extends Exception implements ContextInterface
 
     /**
      * @param string|null $parameterName
+     * @param Throwable $previousException
      * @return NotDefinedException
      */
-    public static function forParameter(string $parameterName = null): NotDefinedException
+    public static function forParameter(string $parameterName = null, Throwable $previousException = null): NotDefinedException
     {
-        $exception = new static('The parameter has been not defined', static::CODE_PARAMETER_NOT_DEFINED);
+        $exception = new static('The parameter has been not defined', static::CODE_PARAMETER_NOT_DEFINED, $previousException);
         $exception->parameterName = $parameterName;
 
         return $exception;

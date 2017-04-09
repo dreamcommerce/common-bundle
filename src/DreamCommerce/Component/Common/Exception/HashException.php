@@ -11,6 +11,7 @@
 namespace DreamCommerce\Component\Common\Exception;
 
 use Exception;
+use Throwable;
 
 class HashException extends Exception implements ContextInterface
 {
@@ -31,11 +32,12 @@ class HashException extends Exception implements ContextInterface
     /**
      * @param string $hash
      * @param string $comparedHash
+     * @param Throwable $previousException
      * @return HashException
      */
-    public static function forNotEqualsHash(string $hash, string $comparedHash): HashException
+    public static function forNotEqualsHash(string $hash, string $comparedHash, Throwable $previousException = null): HashException
     {
-        $exception = new self('Hashes are not equals', static::CODE_NOT_EQUALS_HASH);
+        $exception = new self('Hashes are not equal', static::CODE_NOT_EQUALS_HASH, $previousException);
         $exception->hash = $hash;
         $exception->comparedHash = $comparedHash;
 

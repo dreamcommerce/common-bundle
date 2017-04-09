@@ -11,6 +11,7 @@
 namespace DreamCommerce\Component\Common\Exception;
 
 use Exception;
+use Throwable;
 
 class DefinedException extends Exception implements ContextInterface
 {
@@ -31,11 +32,12 @@ class DefinedException extends Exception implements ContextInterface
 
     /**
      * @param string|null $variableName
+     * @param Throwable $previousException
      * @return DefinedException
      */
-    public static function forVariable(string $variableName = null): DefinedException
+    public static function forVariable(string $variableName = null, Throwable $previousException = null): DefinedException
     {
-        $exception = new static('The variable has been defined', static::CODE_VARIABLE_DEFINED);
+        $exception = new static('The variable has been defined', static::CODE_VARIABLE_DEFINED, $previousException);
         $exception->variableName = $variableName;
 
         return $exception;
@@ -43,11 +45,12 @@ class DefinedException extends Exception implements ContextInterface
 
     /**
      * @param string|null $parameterName
+     * @param Throwable $previousException
      * @return DefinedException
      */
-    public static function forParameter(string $parameterName = null): DefinedException
+    public static function forParameter(string $parameterName = null, Throwable $previousException = null): DefinedException
     {
-        $exception = new static('The parameter has been defined', static::CODE_PARAMETER_DEFINED);
+        $exception = new static('The parameter has been defined', static::CODE_PARAMETER_DEFINED, $previousException);
         $exception->parameterName = $parameterName;
 
         return $exception;
