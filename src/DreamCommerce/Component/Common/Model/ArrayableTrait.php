@@ -34,7 +34,9 @@ trait ArrayableTrait
             if (is_resource($v)) {
                 unset($arr[$k]);
             } elseif (is_object($v)) {
-                if ($v instanceof DateTime) {
+                if($v instanceof ArrayableInterface) {
+                    $arr[$k] = $v->toArray();
+                } elseif ($v instanceof DateTime) {
                     $arr[$k] = $v->format(\DateTime::ISO8601);
                 } elseif ($v instanceof ArrayAccess) {
                     $arr[$k] = (array) $v;
