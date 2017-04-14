@@ -41,6 +41,10 @@ abstract class EnumType extends Type
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
+        if($value === null) {
+            return $value;
+        }
+
         Assert::oneOf($value, $this->values);
 
         return $value;

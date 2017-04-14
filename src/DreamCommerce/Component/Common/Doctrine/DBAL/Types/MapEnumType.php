@@ -69,6 +69,10 @@ abstract class MapEnumType extends EnumType
      */
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
+        if($value === null) {
+            return $value;
+        }
+
         if ($this->flipValues == null) {
             $this->flipValues = array_flip($this->values);
         }
@@ -83,6 +87,10 @@ abstract class MapEnumType extends EnumType
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
+        if($value === null) {
+            return $value;
+        }
+
         Assert::keyExists($this->values, $value);
 
         return $this->values[$value];
