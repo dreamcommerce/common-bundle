@@ -12,8 +12,15 @@
     <services>
         <service id="dream_commerce.datetime_factory" class="%dream_commerce.datetime_factory.class%" />
         <service id="dream_commerce.guzzle_client" class="%dream_commerce.guzzle_client.class%" shared="false" />
+
         <service id="dream_commerce.http_client" class="%dream_commerce.http_client.class%" shared="false">
             <argument type="service" id="dream_commerce.guzzle_client" />
+        </service>
+
+        <service id="dream_commerce.jms.serializer.sylius_constructor" class="DreamCommerce\Component\Common\JMS\Serializer\Construction\SyliusConstructor">
+            <argument type="service" id="service_container" />
+            <argument type="service" id="sylius.resource_registry" />
+            <argument type="service" id="jms_serializer.unserialize_object_constructor" />
         </service>
     </services>
 </container>
