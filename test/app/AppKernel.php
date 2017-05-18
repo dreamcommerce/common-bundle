@@ -19,15 +19,23 @@ class AppKernel extends Kernel
      */
     public function registerBundles()
     {
-        return array(
+        $bundles = array(
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new DreamCommerce\Bundle\CommonBundle\DreamCommerceCommonBundle(),
-            new DreamCommerce\Fixtures\CommonBundle\DreamCommerceFixturesCommonBundle(),
-            new \Sylius\Bundle\ResourceBundle\SyliusResourceBundle(),
-            new \JMS\SerializerBundle\JMSSerializerBundle()
+            new DreamCommerce\Fixtures\CommonBundle\DreamCommerceFixturesCommonBundle()
         );
+
+        if (class_exists('\Sylius\Bundle\ResourceBundle\SyliusResourceBundle')) {
+            $bundles[] = new \Sylius\Bundle\ResourceBundle\SyliusResourceBundle();
+        }
+        if (class_exists('\JMS\SerializerBundle\JMSSerializerBundle')) {
+            $bundles[] = new \JMS\SerializerBundle\JMSSerializerBundle();
+        }
+
+
+        return $bundles;
     }
 
     /**
