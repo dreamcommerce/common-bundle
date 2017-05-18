@@ -29,6 +29,16 @@ class InvalidTypeExceptionTest extends TestCase
         throw InvalidTypeException::forPriorityQueue($given, $expected);
     }
 
+    /**
+     * @expectedException \DreamCommerce\Component\Common\Exception\InvalidTypeException
+     * @expectedExceptionCode 4078
+     * @expectedExceptionMessage Undefined expected type.
+     */
+    public function testUndefinedExpectedType()
+    {
+        throw InvalidTypeException::forUndefinedExpectedType();
+    }
+
     public function invalidTypeDataProvider()
     {
         return [

@@ -11,7 +11,9 @@ class InvalidTypeException extends Exception implements ContextInterface
     /**
      * ERROR CODES
      */
-    const INVALID_TYPE_FOR_QUEUE = 0xDEAD;
+    const INVALID_TYPE_FOR_QUEUE  = 0xDEAD;
+    const UNDEFINED_EXPECTED_TYPE = 0xFEE;
+
 
     /**
      * @var string
@@ -41,6 +43,16 @@ class InvalidTypeException extends Exception implements ContextInterface
         $exception->expectedType = $expected;
 
         return $exception;
+    }
+
+    /**
+     * When expected type is undefined.
+     * @param Throwable|null $previousException
+     * @return InvalidTypeException
+     */
+    public static function forUndefinedExpectedType(Throwable $previousException = null): InvalidTypeException
+    {
+        return new static("Undefined expected type.", self::UNDEFINED_EXPECTED_TYPE, $previousException);
     }
 
     /**
