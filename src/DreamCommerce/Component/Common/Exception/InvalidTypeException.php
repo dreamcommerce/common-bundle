@@ -32,7 +32,7 @@ class InvalidTypeException extends Exception implements ContextInterface
     public static function forPriorityQueue(string $given, string $expected, Throwable $previousException = null): InvalidTypeException
     {
         $exception = new static(
-            sprintf("Invalid type object set to priority queue. Expected %s, %s given", $expected, $given),
+            sprintf("Invalid type object set to priority queue. Expected %s, %s given.", $expected, $given),
             self::INVALID_TYPE_FOR_QUEUE,
             $previousException
         );
