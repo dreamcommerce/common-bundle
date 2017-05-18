@@ -10,9 +10,9 @@ class InvalidTypeExceptionTest extends TestCase
     /**
      * @dataProvider invalidTypeDataProvider
      */
-    public function testForPriorityQueueException($given, $expected)
+    public function testForUnexpectedType($given, $expected)
     {
-        $exception = InvalidTypeException::forPriorityQueue($given, $expected);
+        $exception = InvalidTypeException::forUnexpectedType($given, $expected);
         $this->assertInstanceOf(InvalidTypeException::class, $exception);
         $this->assertEquals($given,     $exception->getGivenType());
         $this->assertEquals($expected,  $exception->getExpectedType());
@@ -24,9 +24,9 @@ class InvalidTypeExceptionTest extends TestCase
      * @expectedExceptionCode 57005
      * @expectedExceptionMessageRegExp /Expected [0-9a-z_\-]+, [0-9a-z_\-]+ given\./i
      */
-    public function testThrowException($given, $expected)
+    public function testThrowExceptionForUnexpectedType($given, $expected)
     {
-        throw InvalidTypeException::forPriorityQueue($given, $expected);
+        throw InvalidTypeException::forUnexpectedType($given, $expected);
     }
 
     /**
@@ -34,7 +34,7 @@ class InvalidTypeExceptionTest extends TestCase
      * @expectedExceptionCode 4078
      * @expectedExceptionMessage Undefined expected type.
      */
-    public function testUndefinedExpectedType()
+    public function testThrowExceptionForUndefinedExpectedType()
     {
         throw InvalidTypeException::forUndefinedExpectedType();
     }

@@ -31,7 +31,7 @@ class InvalidTypeException extends Exception implements ContextInterface
      * @param Throwable|null $previousException
      * @return InvalidTypeException
      */
-    public static function forPriorityQueue(string $given, string $expected, Throwable $previousException = null): InvalidTypeException
+    public static function forUnexpectedType(string $given, string $expected, Throwable $previousException = null): InvalidTypeException
     {
         $exception = new static(
             sprintf("Invalid type object set to priority queue. Expected %s, %s given.", $expected, $given),
