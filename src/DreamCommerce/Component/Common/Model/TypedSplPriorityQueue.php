@@ -5,7 +5,7 @@ namespace DreamCommerce\Component\Common\Model;
 use DreamCommerce\Component\Common\Exception\InvalidTypeException;
 use Zend\Stdlib\SplPriorityQueue;
 
-class TypedSplPriorityQueue extends SplPriorityQueue
+abstract class TypedSplPriorityQueue extends SplPriorityQueue
 {
     const INDEX_NAME   = 'name';
     const INDEX_OBJECT = 'object';
