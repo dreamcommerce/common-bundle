@@ -7,15 +7,12 @@ use Zend\Stdlib\SplPriorityQueue;
 
 abstract class TypedSplPriorityQueue extends SplPriorityQueue
 {
-    const INDEX_NAME   = 'name';
-    const INDEX_OBJECT = 'object';
-
     /**
      * @var string
      */
     protected $expectedObjectType = null;
 
-    public function insert(string $name, $object, int $priority)
+    public function insert($object, $priority)
     {
         if ($this->expectedObjectType === null) {
             throw InvalidTypeException::forUndefinedExpectedType();
@@ -26,11 +23,7 @@ abstract class TypedSplPriorityQueue extends SplPriorityQueue
             throw InvalidTypeException::forUnexpectedType($givenType, $this->expectedObjectType);
         }
 
-        $datum = [
-            self::INDEX_NAME    => $name,
-            self::INDEX_OBJECT  => $object
-        ];
 
-        parent::insert($datum, $priority);
+        parent::insert($object, $priority);
     }
 }
