@@ -1,6 +1,6 @@
 <?php
 
-namespace DreamCommerce\Component\Common\XML;
+namespace DreamCommerce\Component\Common\Model;
 
 use SimpleXMLElement;
 
