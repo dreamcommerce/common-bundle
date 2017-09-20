@@ -14,7 +14,6 @@ use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Types\Type;
 use DreamCommerce\Component\Common\Doctrine\DBAL\Types\UTCDateTimeType;
-use DreamCommerce\Component\Common\Doctrine\DBAL\Types\UTCDateType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -31,8 +30,7 @@ final class DreamCommerceCommonBundle extends Bundle
                 $platform = $connection->getDatabasePlatform();
 
                 $types = array(
-                    UTCDateTimeType::TYPE_NAME => UTCDateTimeType::class,
-                    UTCDateType::TYPE_NAME => UTCDateType::class
+                    UTCDateTimeType::TYPE_NAME => UTCDateTimeType::class
                 );
 
                 foreach ($types as $type => $className) {
