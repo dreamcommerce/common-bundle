@@ -9,6 +9,7 @@
         <parameter key="dream_commerce.datetime_factory.class">DreamCommerce\Component\Common\Factory\DateTimeFactory</parameter>
         <parameter key="dream_commerce.twig.variable_extension.class">DreamCommerce\Bundle\CommonBundle\Twig\Extension\VariableExtension</parameter>
         <parameter key="dream_commerce.jms.serializer.sylius_constructor.class">DreamCommerce\Component\Common\JMS\Serializer\Construction\SyliusConstructor</parameter>
+        <parameter key="dream_commerce.jms.serializer.date_handler.class">DreamCommerce\Component\Common\JMS\Serializer\Handler\DateHandler</parameter>
     </parameters>
 
     <services>
@@ -27,6 +28,10 @@
             <argument type="service" id="service_container" />
             <argument type="service" id="sylius.resource_registry" />
             <argument type="service" id="jms_serializer.unserialize_object_constructor" />
+        </service>
+
+        <service id="dream_commerce.jms.serializer.date_handler" class="%dream_commerce.jms.serializer.date_handler.class%">
+            <tag name="jms_serializer.subscribing_handler" />
         </service>
     </services>
 </container>
