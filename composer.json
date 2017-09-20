@@ -39,7 +39,8 @@
         "psr-4": {
             "DreamCommerce\\Component\\Common\\": "src/DreamCommerce/Component/Common",
             "DreamCommerce\\Bundle\\CommonBundle\\": "src/DreamCommerce/Bundle/CommonBundle"
-        }
+        },
+        "classmap": [ "stubs" ]
     },
     "autoload-dev": {
         "psr-4": {
