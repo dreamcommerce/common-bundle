@@ -1,4 +1,13 @@
 <?php
+
+/*
+ * (c) 2017 DreamCommerce
+ *
+ * @package DreamCommerce\Component\Common
+ * @author Michał Korus <michal.korus@dreamcommerce.com>
+ * @link https://www.dreamcommerce.com
+ */
+
 namespace DreamCommerce\Tests\Compontent\Common\Model;
 
 use DreamCommerce\Component\Common\Exception\InvalidTypeException;
@@ -48,11 +57,11 @@ class StdClassSplPriorityQueueTest extends TestCase
 
     public function unexpectedTypeDataProvider()
     {
-        return [
-            [1],
-            [[]],
-            ['string'],
-            [new \Exception()]
-        ];
+        return array(
+            array(1),
+            array(array()),
+            array('string'),
+            array(new \Exception())
+        );
     }
 }

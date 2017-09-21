@@ -53,7 +53,7 @@ abstract class MapEnumType extends EnumType
             case static::TYPE_UINT8:
             case static::TYPE_UINT16:
             case static::TYPE_UINT32:
-                if($platformName == 'postgresql') {
+                if ($platformName == 'postgresql') {
                     $definition .= ' CHECK(' . $fieldDeclaration['name'] . ' > 0)';
                 } else {
                     $definition .= ' unsigned';
@@ -69,7 +69,7 @@ abstract class MapEnumType extends EnumType
      */
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        if(strlen($value) === 0) {
+        if (strlen($value) === 0) {
             return null;
         }
 
@@ -87,7 +87,7 @@ abstract class MapEnumType extends EnumType
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        if(strlen($value) === 0) {
+        if (strlen($value) === 0) {
             return null;
         }
 

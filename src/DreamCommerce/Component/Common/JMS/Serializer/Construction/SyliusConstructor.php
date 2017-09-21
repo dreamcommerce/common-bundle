@@ -1,13 +1,21 @@
 <?php
 
+/*
+ * (c) 2017 DreamCommerce
+ *
+ * @package DreamCommerce\Component\Common
+ * @author Michał Korus <michal.korus@dreamcommerce.com>
+ * @link https://www.dreamcommerce.com
+ */
+
 namespace DreamCommerce\Component\Common\JMS\Serializer\Construction;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use JMS\Serializer\Metadata\ClassMetadata;
+use InvalidArgumentException;
 use JMS\Serializer\Construction\ObjectConstructorInterface;
 use JMS\Serializer\DeserializationContext;
+use JMS\Serializer\Metadata\ClassMetadata;
 use JMS\Serializer\VisitorInterface;
-use InvalidArgumentException;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Sylius\Component\Resource\Metadata\RegistryInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
@@ -50,13 +58,13 @@ class SyliusConstructor implements ObjectConstructorInterface
         $syliusMetadata = null;
         try {
             $syliusMetadata = $this->registry->getByClass($metadata->name);
-        } catch(InvalidArgumentException $exception) {
+        } catch (InvalidArgumentException $exception) {
             // ignore
         }
 
-        if($syliusMetadata !== null) {
+        if ($syliusMetadata !== null) {
             $object = null;
-            if(isset($data['id'])) {
+            if (isset($data['id'])) {
                 $repositoryId = $syliusMetadata->getServiceId('repository');
                 /** @var RepositoryInterface $repository */
                 $repository = $this->container->get($repositoryId);
@@ -68,7 +76,7 @@ class SyliusConstructor implements ObjectConstructorInterface
                 $manager->initializeObject($object);
             }
 
-            if($object === null) {
+            if ($object === null) {
                 $factoryId = $syliusMetadata->getServiceId('factory');
                 /** @var FactoryInterface $factory */
                 $factory = $this->container->get($factoryId);

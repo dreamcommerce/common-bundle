@@ -1,6 +1,14 @@
 <?php
-namespace DreamCommerce\Tests\Compontent\Common\Exception;
 
+/*
+ * (c) 2017 DreamCommerce
+ *
+ * @package DreamCommerce\Component\Common
+ * @author Michał Korus <michal.korus@dreamcommerce.com>
+ * @link https://www.dreamcommerce.com
+ */
+
+namespace DreamCommerce\Tests\Compontent\Common\Exception;
 
 use DreamCommerce\Component\Common\Exception\InvalidTypeException;
 use PHPUnit\Framework\TestCase;
@@ -41,12 +49,12 @@ class InvalidTypeExceptionTest extends TestCase
 
     public function invalidTypeDataProvider()
     {
-        return [
-            ['InvalidClassA', 'ExpectedClassB'],
-            ['InvalidClassC', 'ExpectedClassD'],
-            ['InvalidClassD', 'ExpectedClassE'],
-            ['InvalidClassE', 'ExpectedClassF'],
-            ['InvalidClassF', 'ExpectedClassG'],
-        ];
+        return array(
+            array('InvalidClassA', 'ExpectedClassB'),
+            array('InvalidClassC', 'ExpectedClassD'),
+            array('InvalidClassD', 'ExpectedClassE'),
+            array('InvalidClassE', 'ExpectedClassF'),
+            array('InvalidClassF', 'ExpectedClassG'),
+        );
     }
 }

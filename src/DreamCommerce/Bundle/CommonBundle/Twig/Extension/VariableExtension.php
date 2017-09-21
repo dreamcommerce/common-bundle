@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * (c) 2017 DreamCommerce
+ *
+ * @package DreamCommerce\Component\Common
+ * @author Michał Korus <michal.korus@dreamcommerce.com>
+ * @link https://www.dreamcommerce.com
+ */
+
 namespace DreamCommerce\Bundle\CommonBundle\Twig\Extension;
 
 use ReflectionClass;
@@ -11,33 +19,33 @@ class VariableExtension extends Twig_Extension
 {
     public function getTests()
     {
-        $tests = [
+        $tests = array(
             'instanceof' =>  new Twig_SimpleTest(
                 'instanceof',
                 function ($var, $instance) {
                     return $var instanceof $instance;
                 }
             )
-        ];
+        );
 
-        $methods = [
+        $methods = array(
             'object',
             'array',
             'bool',
             'numeric',
             'scalar'
-        ];
+        );
 
-        foreach($methods as $method) {
+        foreach ($methods as $method) {
             $tests[$method] = new Twig_SimpleTest(
                 $method,
-                function ($var) use($method) {
+                function ($var) use ($method) {
                     return call_user_func('is_' . $method, $var);
                 }
             );
         }
 
-        foreach([ 'int', 'integer' ] as $test) {
+        foreach (array( 'int', 'integer' ) as $test) {
             $tests[$test] = new Twig_SimpleTest(
                 $test,
                 function ($var) {
@@ -57,19 +65,19 @@ class VariableExtension extends Twig_Extension
 
     public function getFunctions()
     {
-        return [
+        return array(
             'short_class' => new Twig_SimpleFunction(
                 'short_class',
-                function($object) {
+                function ($object) {
                     return (new ReflectionClass($object))->getShortName();
                 }
             ),
             'class' => new Twig_SimpleFunction(
                 'class',
-                function($object) {
+                function ($object) {
                     return (new ReflectionClass($object))->getName();
                 }
             )
-        ];
+        );
     }
 }

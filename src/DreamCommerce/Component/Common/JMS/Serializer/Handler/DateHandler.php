@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * (c) 2017 DreamCommerce
+ *
+ * @package DreamCommerce\Component\Common
+ * @author Michał Korus <michal.korus@dreamcommerce.com>
+ * @link https://www.dreamcommerce.com
+ */
+
 namespace DreamCommerce\Component\Common\JMS\Serializer\Handler;
 
 use JMS\Serializer\Context;
@@ -24,13 +32,12 @@ class DateHandler implements SubscribingHandlerInterface
         $serialisationTypes = array('Date', 'date');
 
         foreach (array('json', 'xml', 'yml') as $format) {
-
             foreach ($deserialisationTypes as $type) {
-                $methods[] = [
+                $methods[] = array(
                     'type'      => $type,
                     'direction' => GraphNavigator::DIRECTION_DESERIALIZATION,
                     'format'    => $format,
-                ];
+                );
             }
 
             foreach ($serialisationTypes as $type) {
@@ -106,7 +113,7 @@ class DateHandler implements SubscribingHandlerInterface
             throw new RuntimeException(sprintf('Invalid datetime "%s", expected format %s.', $data, $format));
         }
 
-        if(PHP_VERSION_ID < 71000) {
+        if (PHP_VERSION_ID < 71000) {
             $datetime->setTime(0, 0, 0);
         } else {
             $datetime->setTime(0, 0, 0, 0);
