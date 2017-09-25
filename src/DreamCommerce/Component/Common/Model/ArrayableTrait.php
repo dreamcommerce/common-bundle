@@ -32,6 +32,22 @@ trait ArrayableTrait
         $ignoredProperties = $this->getIgnoredProperties();
         $arr = get_object_vars($object);
 
+        $func = function($var) {
+            if ($var instanceof ArrayableInterface) {
+                return $var->toArray();
+            } elseif ($var instanceof DateTime) {
+                return $var->format(\DateTime::ISO8601);
+            } elseif ($var instanceof ArrayAccess) {
+                return (array) $var;
+            } elseif (class_exists('\Sylius\Component\Resource\Model\ResourceInterface')) {
+                if ($var instanceof \Sylius\Component\Resource\Model\ResourceInterface) {
+                    return get_class($var).'#'.$var->getId();
+                }
+            }
+
+            return get_class($var);
+        };
+
         foreach ($arr as $k => $v) {
             if(substr($k, 0, 2) == '__') {
                 unset($arr[$k]);
@@ -40,21 +56,19 @@ trait ArrayableTrait
             } elseif (is_resource($v)) {
                 unset($arr[$k]);
             } elseif (is_object($v)) {
-                if ($v instanceof ArrayableInterface) {
-                    $arr[$k] = $v->toArray();
-                } elseif ($v instanceof DateTime) {
-                    $arr[$k] = $v->format(\DateTime::ISO8601);
-                } elseif ($v instanceof ArrayAccess) {
-                    $arr[$k] = (array) $v;
-                } elseif (class_exists('Sylius\Component\Resource\Model\ResourceInterface')) {
-                    if ($v instanceof Sylius\Component\Resource\Model\ResourceInterface) {
-                        $arr[$k] = get_class($v).'#'.$v->getId();
+                if(interface_exists('\Doctrine\Common\Collections\Collection')) {
+                    if ($v instanceof \Doctrine\Common\Collections\Collection) {
+                        $list = array();
+                        foreach ($v as $v2) {
+                            $list[] = $func($v2);
+                        }
+                        $arr[$k] = $list;
+
+                        continue;
                     }
                 }
 
-                if (is_object($arr[$k])) {
-                    $arr[$k] = get_class($arr[$k]);
-                }
+                $arr[$k] = $func($v);
             }
         }
 
