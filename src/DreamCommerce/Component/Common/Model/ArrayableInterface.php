@@ -30,4 +30,9 @@ interface ArrayableInterface
      * @throws InvalidArgumentException
      */
     public function fromArray(array $data, $object = null);
+
+    /**
+     * @return array|null
+     */
+    public function getIgnoredProperties();
 }

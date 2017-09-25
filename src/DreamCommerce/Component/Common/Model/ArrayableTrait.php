@@ -29,8 +29,14 @@ trait ArrayableTrait
             $object = $this;
         }
 
+        $ignoredProperties = $this->getIgnoredProperties();
         $arr = get_object_vars($object);
+
         foreach ($arr as $k => $v) {
+            if(is_array($ignoredProperties) && in_array($k, $ignoredProperties)) {
+                continue;
+            }
+
             if (is_resource($v)) {
                 unset($arr[$k]);
             } elseif (is_object($v)) {
@@ -65,7 +71,13 @@ trait ArrayableTrait
     {
         Assert::nullOrObject($object);
 
+        $ignoredProperties = $this->getIgnoredProperties();
+
         foreach ($params as $option => $value) {
+            if(is_array($ignoredProperties) && in_array($option, $ignoredProperties)) {
+                continue;
+            }
+
             $option = ucfirst($option);
             $funcName = 'set'.$option;
             if (method_exists($this, $funcName)) {
@@ -104,5 +116,13 @@ trait ArrayableTrait
         }
 
         return $this;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getIgnoredProperties()
+    {
+        return null;
     }
 }
