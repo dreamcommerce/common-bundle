@@ -2,7 +2,7 @@
 
 namespace DreamCommerce\Component\Common\Util;
 
-final class ArrayUtil
+final class ArrayUtils
 {
     /**
      * @param array $arr1
