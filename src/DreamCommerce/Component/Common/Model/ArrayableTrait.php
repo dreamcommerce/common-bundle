@@ -34,10 +34,8 @@ trait ArrayableTrait
 
         foreach ($arr as $k => $v) {
             if(is_array($ignoredProperties) && in_array($k, $ignoredProperties)) {
-                continue;
-            }
-
-            if (is_resource($v)) {
+                unset($arr[$k]);
+            } elseif (is_resource($v)) {
                 unset($arr[$k]);
             } elseif (is_object($v)) {
                 if ($v instanceof ArrayableInterface) {
