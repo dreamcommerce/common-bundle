@@ -33,7 +33,7 @@ trait ArrayableTrait
         $arr = get_object_vars($object);
 
         foreach ($arr as $k => $v) {
-            if(substr($k, 2) == '__') {
+            if(substr($k, 0, 2) == '__') {
                 unset($arr[$k]);
             } elseif(is_array($ignoredProperties) && in_array($k, $ignoredProperties)) {
                 unset($arr[$k]);
