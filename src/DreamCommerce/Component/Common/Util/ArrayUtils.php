@@ -18,7 +18,7 @@ final class ArrayUtils
                 if (is_array($v)) {
                     $diff = self::diff($v, $arr2[$k]);
                     if (count($diff)) {
-                        $aReturn[$k] = $diff;
+                        $result[$k] = $diff;
                     }
                 } elseif ($v != $arr2[$k]) {
                     $result[$k] = $v;
