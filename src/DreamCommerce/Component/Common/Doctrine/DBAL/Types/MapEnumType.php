@@ -71,6 +71,7 @@ abstract class MapEnumType extends EnumType
      */
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
+        $value = (string) $value;
         if (strlen($value) === 0) {
             return null;
         }
