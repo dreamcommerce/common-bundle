@@ -8,6 +8,8 @@
  * @link https://www.dreamcommerce.com
  */
 
+declare(strict_types=1);
+
 namespace DreamCommerce\Bundle\CommonBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
@@ -20,7 +22,7 @@ abstract class BaseCommand extends ContainerAwareCommand
      * @param string          $message
      * @param string          $type
      */
-    protected function printMessageBox(OutputInterface $output, $message, $type = 'error')
+    protected function printMessageBox(OutputInterface $output, $message, $type = 'error'): void
     {
         $formatter = $this->getHelper('formatter');
         $messages = array('', $message, '');

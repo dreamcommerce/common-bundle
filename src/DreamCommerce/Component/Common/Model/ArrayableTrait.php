@@ -8,6 +8,8 @@
  * @link https://www.dreamcommerce.com
  */
 
+declare(strict_types=1);
+
 namespace DreamCommerce\Component\Common\Model;
 
 use ArrayAccess;
@@ -29,7 +31,7 @@ trait ArrayableTrait
             $object = $this;
         }
 
-        $ignoredProperties = null;
+        $ignoredProperties = array();
         if ($object instanceof ArrayableInterface) {
             $ignoredProperties = $object->getIgnoredProperties();
         }
@@ -54,7 +56,7 @@ trait ArrayableTrait
         foreach ($arr as $k => $v) {
             if (substr($k, 0, 2) == '__') {
                 unset($arr[$k]);
-            } elseif (is_array($ignoredProperties) && in_array($k, $ignoredProperties)) {
+            } elseif (in_array($k, $ignoredProperties)) {
                 unset($arr[$k]);
             } elseif (is_resource($v)) {
                 unset($arr[$k]);
@@ -81,10 +83,8 @@ trait ArrayableTrait
     /**
      * @param object|null $object
      * @param array       $params
-     *
-     * @return $this
      */
-    public function fromArray(array $params = array(), $object = null)
+    public function fromArray(array $params = array(), $object = null): void
     {
         Assert::nullOrObject($object);
 
@@ -92,13 +92,13 @@ trait ArrayableTrait
             $object = $this;
         }
 
-        $ignoredProperties = null;
+        $ignoredProperties = array();
         if ($object instanceof ArrayableInterface) {
             $ignoredProperties = $object->getIgnoredProperties();
         }
 
         foreach ($params as $option => $value) {
-            if (is_array($ignoredProperties) && in_array($option, $ignoredProperties)) {
+            if (in_array($option, $ignoredProperties)) {
                 continue;
             }
 
@@ -138,15 +138,13 @@ trait ArrayableTrait
                 continue;
             }
         }
-
-        return $object;
     }
 
     /**
-     * @return array|null
+     * @return array
      */
-    public function getIgnoredProperties()
+    public function getIgnoredProperties(): array
     {
-        return null;
+        return array();
     }
 }

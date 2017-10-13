@@ -8,6 +8,8 @@
  * @link https://www.dreamcommerce.com
  */
 
+declare(strict_types=1);
+
 namespace DreamCommerce\Component\Common\Util;
 
 final class ArrayUtils
@@ -17,7 +19,7 @@ final class ArrayUtils
      * @param array $arr2
      * @return array
      */
-    public static function diff($arr1, $arr2)
+    public static function diff(array $arr1, array $arr2): array
     {
         $result = array();
 
@@ -43,10 +45,10 @@ final class ArrayUtils
      * @param bool $keepKeys
      * @return array
      */
-    public static function unique(array $arr, $keepKeys = false)
+    public static function unique(array $arr, bool $keepKeys = false): array
     {
         if ($keepKeys) {
-            $array = array_reverse($arr, true);
+            $arr = array_reverse($arr, true);
         }
         $flip = array_flip($arr);
         if (!$keepKeys) {
@@ -59,7 +61,7 @@ final class ArrayUtils
      * @param array $array , $array2[, $array3, ...]
      * @return array
      */
-    public static function intersect(array $array)
+    public static function intersect(array $array): array
     {
         if (($argsCnt = func_num_args()) < 2) {
             throw new \InvalidArgumentException('At least 2 arrays must be passed');
@@ -80,6 +82,7 @@ final class ArrayUtils
             array_unshift($args, $array);
             return call_user_func_array(array(__CLASS__, __FUNCTION__), $args);
         }
+
         return $array;
     }
 }

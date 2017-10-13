@@ -8,6 +8,8 @@
  * @link https://www.dreamcommerce.com
  */
 
+declare(strict_types=1);
+
 namespace DreamCommerce\Bundle\CommonBundle\Command;
 
 use DirectoryIterator;
@@ -67,7 +69,7 @@ class LogViewCommand extends BaseCommand
         $output->writeln('');
     }
 
-    protected function showLog($filePath)
+    protected function showLog($filePath): void
     {
         $log = new SplFileObject($filePath);
         $type = $this->input->getOption('type');
@@ -82,7 +84,7 @@ class LogViewCommand extends BaseCommand
         }
     }
 
-    protected function getLogsList()
+    protected function getLogsList(): array
     {
         $result = array();
         $dir = $this->getContainer()->get('kernel')->getLogDir();
@@ -99,9 +101,8 @@ class LogViewCommand extends BaseCommand
         return $result;
     }
 
-    protected function formatLine($i)
+    protected function formatLine($i): string
     {
-        $i = str_replace("\\n", PHP_EOL, $i);
-        return $i;
+        return str_replace("\\n", PHP_EOL, $i);
     }
 }

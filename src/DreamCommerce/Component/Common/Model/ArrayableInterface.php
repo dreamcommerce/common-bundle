@@ -8,6 +8,8 @@
  * @link https://www.dreamcommerce.com
  */
 
+declare(strict_types=1);
+
 namespace DreamCommerce\Component\Common\Model;
 
 use InvalidArgumentException;
@@ -29,10 +31,10 @@ interface ArrayableInterface
      *
      * @throws InvalidArgumentException
      */
-    public function fromArray(array $data, $object = null);
+    public function fromArray(array $data, $object = null): void;
 
     /**
-     * @return array|null
+     * @return array
      */
-    public function getIgnoredProperties();
+    public function getIgnoredProperties(): array;
 }

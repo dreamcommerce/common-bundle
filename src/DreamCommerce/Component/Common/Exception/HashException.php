@@ -8,6 +8,8 @@
  * @link https://www.dreamcommerce.com
  */
 
+declare(strict_types=1);
+
 namespace DreamCommerce\Component\Common\Exception;
 
 use Exception;
@@ -47,7 +49,7 @@ class HashException extends Exception implements ContextInterface
     /**
      * @return string|null
      */
-    public function getHash()
+    public function getHash(): ?string
     {
         return $this->hash;
     }
@@ -55,7 +57,7 @@ class HashException extends Exception implements ContextInterface
     /**
      * @return string|null
      */
-    public function getComparedHash()
+    public function getComparedHash(): ?string
     {
         return $this->comparedHash;
     }

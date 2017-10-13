@@ -8,6 +8,8 @@
  * @link https://www.dreamcommerce.com
  */
 
+declare(strict_types=1);
+
 namespace DreamCommerce\Component\Common\Exception;
 
 use Exception;
@@ -67,7 +69,7 @@ class InvalidTypeException extends Exception implements ContextInterface
     /**
      * @return string
      */
-    public function getGivenType(): string
+    public function getGivenType(): ?string
     {
         return $this->givenType;
     }
@@ -75,7 +77,7 @@ class InvalidTypeException extends Exception implements ContextInterface
     /**
      * @return string
      */
-    public function getExpectedType(): string
+    public function getExpectedType(): ?string
     {
         return $this->expectedType;
     }

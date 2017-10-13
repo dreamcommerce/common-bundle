@@ -8,6 +8,8 @@
  * @link https://www.dreamcommerce.com
  */
 
+declare(strict_types=1);
+
 namespace DreamCommerce\Component\Common\Exception;
 
 use DreamCommerce\Component\Common\Model\ArrayableInterface;
@@ -40,13 +42,9 @@ trait ContextTrait
 
     /**
      * @param array $context
-     *
-     * @return $this
      */
-    public function setExceptionContext(array $context = array())
+    public function setExceptionContext(array $context = array()): void
     {
         $this->context = $context;
-
-        return $this;
     }
 }

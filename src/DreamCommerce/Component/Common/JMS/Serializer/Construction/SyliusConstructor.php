@@ -8,6 +8,8 @@
  * @link https://www.dreamcommerce.com
  */
 
+declare(strict_types=1);
+
 namespace DreamCommerce\Component\Common\JMS\Serializer\Construction;
 
 use Doctrine\Common\Persistence\ObjectManager;

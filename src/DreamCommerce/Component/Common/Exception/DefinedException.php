@@ -8,6 +8,8 @@
  * @link https://www.dreamcommerce.com
  */
 
+declare(strict_types=1);
+
 namespace DreamCommerce\Component\Common\Exception;
 
 use Exception;
@@ -59,7 +61,7 @@ class DefinedException extends Exception implements ContextInterface
     /**
      * @return string|null
      */
-    public function getVariableName()
+    public function getVariableName(): ?string
     {
         return $this->variableName;
     }
@@ -67,7 +69,7 @@ class DefinedException extends Exception implements ContextInterface
     /**
      * @return string|null
      */
-    public function getParameterName()
+    public function getParameterName(): ?string
     {
         return $this->parameterName;
     }

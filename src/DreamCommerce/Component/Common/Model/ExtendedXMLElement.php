@@ -8,6 +8,8 @@
  * @link https://www.dreamcommerce.com
  */
 
+declare(strict_types=1);
+
 namespace DreamCommerce\Component\Common\Model;
 
 use SimpleXMLElement;
@@ -19,7 +21,7 @@ class ExtendedXMLElement extends SimpleXMLElement
      *
      * @param SimpleXMLElement $append
      */
-    public function appendXML(SimpleXMLElement $append)
+    public function appendXML(SimpleXMLElement $append): void
     {
         if (strlen(trim((string)$append)) == 0) {
             $xml = $this->addChild($append->getName());

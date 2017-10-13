@@ -8,6 +8,8 @@
  * @link https://www.dreamcommerce.com
  */
 
+declare(strict_types=1);
+
 namespace DreamCommerce\Component\Common\Model;
 
 use DreamCommerce\Component\Common\Exception\InvalidTypeException;

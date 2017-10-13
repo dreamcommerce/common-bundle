@@ -8,6 +8,8 @@
  * @link https://www.dreamcommerce.com
  */
 
+declare(strict_types=1);
+
 namespace DreamCommerce\Component\Common\Http;
 
 use GuzzleHttp\ClientInterface as GuzzleClientInterface;
@@ -15,44 +17,45 @@ use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
+use Psr\Http\Message\UriInterface;
 
 class GuzzleClient implements ClientInterface
 {
     /**
      * @var GuzzleClientInterface
      */
-    private $_guzzleClient;
+    private $guzzleClient;
 
     /**
      * @param GuzzleClientInterface $guzzleClient
      */
     public function __construct(GuzzleClientInterface $guzzleClient)
     {
-        $this->_guzzleClient = $guzzleClient;
-
-        return $this;
+        $this->guzzleClient = $guzzleClient;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function send(RequestInterface $request, array $options = array())
+    public function send(RequestInterface $request, array $options = array()): ResponseInterface
     {
-        return $this->_guzzleClient->send($request, $options);
+        return $this->guzzleClient->send($request, $options);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function request($method, $uri, array $options = array())
+    public function request(string $method, $uri, array $options = array()): ResponseInterface
     {
-        return $this->_guzzleClient->request($method, $uri, $options);
+        return $this->guzzleClient->request($method, $uri, $options);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function createRequest($method, $uri, array $headers = array(), $body = null, $protocolVersion = '1.1')
+    public function createRequest(string $method, $uri, array $headers = array(), $body = null, string $protocolVersion = '1.1'): RequestInterface
     {
         return new Request($method, $uri, $headers, $body, $protocolVersion);
     }
@@ -60,7 +63,7 @@ class GuzzleClient implements ClientInterface
     /**
      * {@inheritdoc}
      */
-    public function createUri($uri = null)
+    public function createUri(string $uri = null): UriInterface
     {
         return new Uri($uri);
     }
@@ -68,7 +71,7 @@ class GuzzleClient implements ClientInterface
     /**
      * {@inheritdoc}
      */
-    public function createStream($data)
+    public function createStream($data): StreamInterface
     {
         return Psr7\stream_for($data);
     }

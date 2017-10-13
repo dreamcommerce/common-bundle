@@ -8,6 +8,8 @@
  * @link https://www.dreamcommerce.com
  */
 
+declare(strict_types=1);
+
 namespace DreamCommerce\Bundle\CommonBundle\DependencyInjection;
 
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
