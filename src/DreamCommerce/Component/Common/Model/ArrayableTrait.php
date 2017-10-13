@@ -29,10 +29,13 @@ trait ArrayableTrait
             $object = $this;
         }
 
-        $ignoredProperties = $this->getIgnoredProperties();
+        $ignoredProperties = null;
+        if ($object instanceof ArrayableInterface) {
+            $ignoredProperties = $object->getIgnoredProperties();
+        }
         $arr = get_object_vars($object);
 
-        $func = function($var) {
+        $func = function ($var) {
             if ($var instanceof ArrayableInterface) {
                 return $var->toArray();
             } elseif ($var instanceof DateTime) {
@@ -49,14 +52,14 @@ trait ArrayableTrait
         };
 
         foreach ($arr as $k => $v) {
-            if(substr($k, 0, 2) == '__') {
+            if (substr($k, 0, 2) == '__') {
                 unset($arr[$k]);
-            } elseif(is_array($ignoredProperties) && in_array($k, $ignoredProperties)) {
+            } elseif (is_array($ignoredProperties) && in_array($k, $ignoredProperties)) {
                 unset($arr[$k]);
             } elseif (is_resource($v)) {
                 unset($arr[$k]);
             } elseif (is_object($v)) {
-                if(interface_exists('\Doctrine\Common\Collections\Collection')) {
+                if (interface_exists('\Doctrine\Common\Collections\Collection')) {
                     if ($v instanceof \Doctrine\Common\Collections\Collection) {
                         $list = array();
                         foreach ($v as $v2) {
@@ -85,51 +88,58 @@ trait ArrayableTrait
     {
         Assert::nullOrObject($object);
 
-        $ignoredProperties = $this->getIgnoredProperties();
+        if ($object === null) {
+            $object = $this;
+        }
+
+        $ignoredProperties = null;
+        if ($object instanceof ArrayableInterface) {
+            $ignoredProperties = $object->getIgnoredProperties();
+        }
 
         foreach ($params as $option => $value) {
-            if(is_array($ignoredProperties) && in_array($option, $ignoredProperties)) {
+            if (is_array($ignoredProperties) && in_array($option, $ignoredProperties)) {
                 continue;
             }
 
             $option = ucfirst($option);
             $funcName = 'set'.$option;
-            if (method_exists($this, $funcName)) {
-                call_user_func(array($this, $funcName), $value);
+            if (method_exists($object, $funcName)) {
+                call_user_func(array($object, $funcName), $value);
                 continue;
             }
 
             $camelCase = str_replace(' ', '', ucwords(str_replace('_', ' ', $option)));
             $funcName = 'set'.$camelCase;
-            if (method_exists($this, $funcName)) {
-                call_user_func(array($this, $funcName), $value);
+            if (method_exists($object, $funcName)) {
+                call_user_func(array($object, $funcName), $value);
                 continue;
             }
 
-            if (property_exists($this, $option)) {
-                $this->$camelCase = $value;
+            if (property_exists($object, $option)) {
+                $object->$camelCase = $value;
                 continue;
             }
 
-            if (property_exists($this, '_'.$option)) {
-                $this->$camelCase = $value;
+            if (property_exists($object, '_'.$option)) {
+                $object->$camelCase = $value;
                 continue;
             }
 
             $camelCase = lcfirst($camelCase);
-            if (property_exists($this, $camelCase)) {
-                $this->$camelCase = $value;
+            if (property_exists($object, $camelCase)) {
+                $object->$camelCase = $value;
                 continue;
             }
 
             $camelCase = '_'.$camelCase;
-            if (property_exists($this, $camelCase)) {
-                $this->$camelCase = $value;
+            if (property_exists($object, $camelCase)) {
+                $object->$camelCase = $value;
                 continue;
             }
         }
 
-        return $this;
+        return $object;
     }
 
     /**
