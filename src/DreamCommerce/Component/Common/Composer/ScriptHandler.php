@@ -47,7 +47,7 @@ class ScriptHandler
             } else {
                 $filePath = $destination.DIRECTORY_SEPARATOR.$iterator->getSubPathName();
                 if (!file_exists($filePath)) {
-                    @copy($item, $filePath);
+                    @copy($item->getRealPath(), $filePath);
                 }
             }
         }
