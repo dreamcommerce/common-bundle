@@ -90,6 +90,7 @@ abstract class MapEnumType extends EnumType
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
+        $value = (string) $value;
         if (strlen($value) === 0) {
             return null;
         }
