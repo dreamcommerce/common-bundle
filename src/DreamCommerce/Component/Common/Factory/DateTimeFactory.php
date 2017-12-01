@@ -13,9 +13,9 @@ declare(strict_types=1);
 namespace DreamCommerce\Component\Common\Factory;
 
 use DateTime;
-use Sylius\Component\Resource\Factory\FactoryInterface;
+use DateTimeZone;
 
-class DateTimeFactory implements FactoryInterface
+class DateTimeFactory implements DateTimeFactoryInterface
 {
     /**
      * {@inheritdoc}
@@ -23,5 +23,13 @@ class DateTimeFactory implements FactoryInterface
     public function createNew()
     {
         return new DateTime();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function createNewWithTimezone(DateTimeZone $timezone): DateTime
+    {
+        return new DateTime("now", $timezone);
     }
 }

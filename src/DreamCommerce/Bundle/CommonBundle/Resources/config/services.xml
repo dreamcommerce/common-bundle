@@ -7,6 +7,7 @@
         <parameter key="dream_commerce.guzzle_client.class">GuzzleHttp\Client</parameter>
         <parameter key="dream_commerce.http_client.class">DreamCommerce\Component\Common\Http\GuzzleClient</parameter>
         <parameter key="dream_commerce.datetime_factory.class">DreamCommerce\Component\Common\Factory\DateTimeFactory</parameter>
+        <parameter key="dream_commerce.uri_factory.class">DreamCommerce\Component\Common\Factory\GuzzleUriFactory</parameter>
         <parameter key="dream_commerce.twig.variable_extension.class">DreamCommerce\Bundle\CommonBundle\Twig\Extension\VariableExtension</parameter>
         <parameter key="dream_commerce.jms.serializer.sylius_constructor.class">DreamCommerce\Component\Common\JMS\Serializer\Construction\SyliusConstructor</parameter>
         <parameter key="dream_commerce.jms.serializer.date_handler.class">DreamCommerce\Component\Common\JMS\Serializer\Handler\DateHandler</parameter>
@@ -14,6 +15,7 @@
 
     <services>
         <service id="dream_commerce.datetime_factory" class="%dream_commerce.datetime_factory.class%" />
+        <service id="dream_commerce.uri_factory" class="%dream_commerce.uri_factory.class%" />
         <service id="dream_commerce.guzzle_client" class="%dream_commerce.guzzle_client.class%" shared="false" />
 
         <service id="dream_commerce.http_client" class="%dream_commerce.http_client.class%" shared="false">
