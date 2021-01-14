@@ -25,7 +25,7 @@ final class ArrayUtils
 
         foreach ($arr1 as $k => $v) {
             if (array_key_exists($k, $arr2)) {
-                if (is_array($v)) {
+                if (is_array($v) && is_array($arr2[$k])) {
                     $diff = self::diff($v, $arr2[$k]);
                     if (count($diff)) {
                         $result[$k] = $diff;
