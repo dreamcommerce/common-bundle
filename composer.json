@@ -4,7 +4,7 @@
     "type": "library",
     "description": "DreamCommerce common bundle",
     "require": {
-        "php": "^7,4",
+        "php": "^7.4",
         "psr/http-message": "^1.0",
         "webmozart/assert": "^1.2",
         "laminas/laminas-stdlib": "^3.1"
