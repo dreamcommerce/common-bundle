@@ -61,8 +61,8 @@ trait ArrayableTrait
             } elseif (is_resource($v)) {
                 unset($arr[$k]);
             } elseif (is_object($v)) {
-                if (interface_exists('\Doctrine\Common\Collections\Collection')) {
-                    if ($v instanceof \Doctrine\Common\Collections\Collection) {
+                if (interface_exists('\Doctrine\Collections\Collection')) {
+                    if ($v instanceof \Doctrine\Collections\Collection) {
                         $list = array();
                         foreach ($v as $v2) {
                             $list[] = $func($v2);
