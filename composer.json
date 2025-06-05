@@ -4,17 +4,17 @@
     "type": "library",
     "description": "DreamCommerce common bundle",
     "require": {
-        "php": "^7.4",
+        "php": ">=8.2",
         "psr/http-message": "^1.0",
         "webmozart/assert": "^1.2",
-        "laminas/laminas-stdlib": "^3.1"
+        "laminas/laminas-stdlib": "^3.1",
+        "sylius/resource-bundle": "^1.11"
     },
     "require-dev": {
         "doctrine/doctrine-bundle": "^2.5.7",
         "doctrine/orm": "^2.10.3",
         "guzzlehttp/guzzle": "^6.2",
         "phpunit/phpunit": "^10.0-dev",
-        "sylius/resource-bundle": "v1.9.0-BETA.1",
         "friendsofphp/php-cs-fixer": "^v2.19.3",
         "polishsymfonycommunity/symfony-mocker-container": "^1.0",
         "symfony/browser-kit": "v6.0.3",
@@ -43,7 +43,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "DreamCommerce\\Tests\\Common\\": "test/src/DreamCommerce/Tests/Common",
+            "DreamCommerce\\Tests\\Compontent\\Common\\": "test/src/DreamCommerce/Tests/Compontent/Common",
             "DreamCommerce\\Tests\\CommonBundle\\": "test/src/DreamCommerce/Tests/CommonBundle",
             "DreamCommerce\\Fixtures\\CommonBundle\\": "test/src/DreamCommerce/Fixtures/CommonBundle/"
         }
@@ -56,7 +56,8 @@
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev",
-            "dev-develop": "1.1-dev"
+            "dev-develop": "1.1-dev",
+            "dev-dev8.2": "2.0-dev"
         }
     }
 }

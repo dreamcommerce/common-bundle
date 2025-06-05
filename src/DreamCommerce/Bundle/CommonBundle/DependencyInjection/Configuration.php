@@ -25,15 +25,12 @@ final class Configuration implements ConfigurationInterface
     /**
      * {@inheritdoc}
      */
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder();
+        $treeBuilder = new TreeBuilder('dream_commerce');
 
-        $rootNode = $treeBuilder
-            ->root('dream_commerce')
-                ->addDefaultsIfNotSet()
+        $rootNode = $treeBuilder->getRootNode()->addDefaultsIfNotSet()
                 ->children();
-        ;
 
         $this->addJmsSection($rootNode);
 
